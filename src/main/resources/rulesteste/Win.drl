@@ -1,0 +1,19 @@
+package eng.br.rafaelsouza.drools
+
+import eng.br.rafaelsouza.drools.Match
+
+global java.io.PrintStream out
+
+rule "Home Win" when
+     $m: Match(homeScoreboard > visitantScoreboard)
+then
+    $m.getHome().setPoints($m.getHome().getPoints() + 3);
+    out.println( $m.getHome().getName()+ " : "+$m.getHome().getPoints() );
+end
+
+rule "Visitant Win" when
+     $m: Match(homeScoreboard < visitantScoreboard)
+then
+    $m.getVisitant().setPoints($m.getVisitant().getPoints() + 3);
+    out.println( $m.getVisitant().getName()+ " : "+$m.getVisitant().getPoints() );
+end
